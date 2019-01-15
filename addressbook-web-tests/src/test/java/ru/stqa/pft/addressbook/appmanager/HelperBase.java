@@ -31,4 +31,8 @@ public class HelperBase {
             return false;
         }
     }
+
+    protected void closeAlert() {
+        wd.switchTo().alert().accept();
+    }
 }
