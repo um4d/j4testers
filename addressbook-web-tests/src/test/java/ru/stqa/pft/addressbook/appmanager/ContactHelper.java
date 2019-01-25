@@ -15,7 +15,7 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void fillContactData(ContactData contactData) {
+    public void fillContactData(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getName());
         type(By.name("middlename"), contactData.getMiddleName());
         type(By.name("lastname"), contactData.getLastName());
@@ -37,8 +37,11 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//select[3]/option[7]"));
         click(By.xpath("(//option[@value='April'])[2]"));
         type(By.name("ayear"), contactData.getaYear());
-        if (isElementPresent(By.name("new_group")))
+
+        if (creation) {
             click(By.xpath("(//option[@value='7'])[3]"));
+        }
+
         type(By.name("address2"), contactData.getAddress_2());
         type(By.name("phone2"), contactData.getPhone_2());
         type(By.name("notes"), contactData.getNotes());
