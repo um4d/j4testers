@@ -33,7 +33,7 @@ public class ApplicationManager {
         }
 
 
-        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
 
         sessionHelper = new SessionHelper(wd);

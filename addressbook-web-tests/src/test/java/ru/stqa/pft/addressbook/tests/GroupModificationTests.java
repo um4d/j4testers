@@ -9,6 +9,14 @@ public class GroupModificationTests extends TestBase {
     public void testGroupModification() throws Exception {
 
         app.getNavigationHelper().gotoGroupPage();
+
+        if (! app.getGroupHelper().isThereAGroup()) {
+            app.getGroupHelper().createGroup(new GroupData(
+                    "new_group_name",
+                    "new_header",
+                    "new_footer"));
+        }
+
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().initGroupModification();
         app.getGroupHelper().fillGroupForm(new GroupData("mod_test_name", "mod_header", "mod_footer"));

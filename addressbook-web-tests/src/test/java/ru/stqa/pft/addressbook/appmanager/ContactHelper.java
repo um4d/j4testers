@@ -37,11 +37,9 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//select[3]/option[7]"));
         click(By.xpath("(//option[@value='April'])[2]"));
         type(By.name("ayear"), contactData.getaYear());
-
         if (creation) {
-            click(By.xpath("(//option[@value='7'])[3]"));
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText("new_group_name");
         }
-
         type(By.name("address2"), contactData.getAddress_2());
         type(By.name("phone2"), contactData.getPhone_2());
         type(By.name("notes"), contactData.getNotes());
@@ -69,6 +67,19 @@ public class ContactHelper extends HelperBase {
         click(By.name("selected[]"));
         click(By.xpath("//input[@value='Delete']"));
         closeAlert();
+
+    }
+
+    public void createContact(ContactData contact) {
+
+        initContactCreation();
+        fillContactData(contact, true);
+        submitContactCreation();
+
+    }
+
+    public boolean isThereContact() {
+        return isElementPresent(By.name("selected[]"));
 
     }
 }
