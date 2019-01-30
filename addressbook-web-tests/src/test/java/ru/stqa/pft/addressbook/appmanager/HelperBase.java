@@ -50,4 +50,6 @@ public class HelperBase {
     protected void closeAlert() {
         wd.switchTo().alert().accept();
     }
+
+
 }

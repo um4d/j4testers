@@ -1,7 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -17,8 +20,22 @@ public class ContactDeletionTests extends TestBase {
                     "April", "2001", "test_group_name", "Rlyeh", "33344555", "So much fields"));
         }
 
+        app.getNavigationHelper().gotoHome();
+
+        int before = app.getContactHelper().getContactCount();
+        app.getContactHelper().selectContact(0);
         app.getContactHelper().deleteContact();
         app.getNavigationHelper().gotoHome();
+
+    //        try {
+    //            TimeUnit.SECONDS.sleep(1);
+    //        } catch (InterruptedException e) {
+    //            e.printStackTrace();
+    //        }
+
+        int after = app.getContactHelper().getContactCount();
+        Assert.assertEquals(after, before - 1);
+
 
     }
 

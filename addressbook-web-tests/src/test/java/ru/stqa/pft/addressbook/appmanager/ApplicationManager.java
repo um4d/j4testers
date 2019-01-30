@@ -15,10 +15,10 @@ public class ApplicationManager {
     WebDriver wd;
 
     private NavigationHelper navigationHelper;
-    private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private SessionHelper sessionHelper;
     private String browser;
+    private GroupHelper groupHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;

@@ -26,4 +26,15 @@ public class NavigationHelper extends HelperBase{
         }
         click(By.linkText("home"));
     }
+
+    /*public void waitForMS(int ms) {
+
+        try {
+            wd.;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }*/
+
 }

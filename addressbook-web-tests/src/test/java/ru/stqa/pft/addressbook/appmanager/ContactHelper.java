@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -38,7 +36,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//option[@value='April'])[2]"));
         type(By.name("ayear"), contactData.getaYear());
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText("new_group_name");
+            selectGroupForCreation(contactData.getGroup());
         }
         type(By.name("address2"), contactData.getAddress_2());
         type(By.name("phone2"), contactData.getPhone_2());
@@ -53,18 +51,24 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitContactUpdate() {
         click(By.xpath("(//input[@name='update'])[2]"));
     }
 
+    public void selectGroupForCreation(String groupName) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupName);
+    }
+
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+    }
 
     public void deleteContact() {
 
-        click(By.name("selected[]"));
         click(By.xpath("//input[@value='Delete']"));
         closeAlert();
 
@@ -81,5 +85,12 @@ public class ContactHelper extends HelperBase {
     public boolean isThereContact() {
         return isElementPresent(By.name("selected[]"));
 
+    }
+
+    public int getContactCount() {
+        if (isThereContact()) {
+            return wd.findElements(By.name("selected[]")).size();
+        }
+        return 0;
     }
 }
