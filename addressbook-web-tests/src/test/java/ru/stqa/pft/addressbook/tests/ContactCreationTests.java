@@ -1,9 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.Comparator;
+import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
@@ -22,19 +25,51 @@ public class ContactCreationTests extends TestBase {
 
         app.getNavigationHelper().gotoHome();
 
-        int before = app.getContactHelper().getContactCount();
+        List<ContactData> before = app.getContactHelper().getContactList();
 
         app.getContactHelper().initContactCreation();
-        app.getContactHelper().fillContactData(new ContactData("test_contact_name", "T. C.", "Test_contact_lname", "test_nick", "test_title",
-                "test_company", "Test Address", "+2323232", "+932323111100", "333444", "999888", "testemail@test.com"
-                , "testemail2@test.com", "testemail3@test.com", "testhomepage.com", "10", "January", "2000", "5",
-                "April", "2001", "test_group_name", "Rlyeh", "33344555", "So much fields"), true);
+        ContactData contact = new ContactData(
+                "aTest_contact_name",
+                null,
+                "Test_contact_lname",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "test_group_name",
+                null,
+                null,
+                null);
+
+        app.getContactHelper().fillContactData(contact, true);
         app.getContactHelper().submitContactCreation();
         app.getNavigationHelper().gotoHome();
 
-        int after = app.getContactHelper().getContactCount();
+        List<ContactData> after = app.getContactHelper().getContactList();
 
-        Assert.assertEquals(after, before + 1);
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+
+        before.add(contact);
+
+        Assert.assertEquals(after.size(), before.size());
+
+        after.sort(byId);
+        before.sort(byId);
+        Assert.assertEquals(after, before);
 
     }
 

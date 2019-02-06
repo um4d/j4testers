@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTests extends TestBase {
@@ -19,23 +21,21 @@ public class ContactDeletionTests extends TestBase {
                     , "testemail2@test.com", "testemail3@test.com", "testhomepage.com", "10", "January", "2000", "5",
                     "April", "2001", "test_group_name", "Rlyeh", "33344555", "So much fields"));
         }
-
         app.getNavigationHelper().gotoHome();
-
-        int before = app.getContactHelper().getContactCount();
-        app.getContactHelper().selectContact(0);
+        List<ContactData> before = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().deleteContact();
         app.getNavigationHelper().gotoHome();
+        before.remove(before.size() - 1);
+        List<ContactData> after  = app.getContactHelper().getContactList();
 
-    //        try {
-    //            TimeUnit.SECONDS.sleep(1);
-    //        } catch (InterruptedException e) {
-    //            e.printStackTrace();
-    //        }
-
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before - 1);
-
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        Assert.assertEquals(after.size(), before.size());
+        Assert.assertEquals(new HashSet<>(after), new HashSet<>(before));
 
     }
 
