@@ -26,14 +26,10 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().deleteContact();
         app.getNavigationHelper().gotoHome();
+
         before.remove(before.size() - 1);
         List<ContactData> after  = app.getContactHelper().getContactList();
 
-//        try {
-//            TimeUnit.SECONDS.sleep(1);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         Assert.assertEquals(after.size(), before.size());
         Assert.assertEquals(new HashSet<>(after), new HashSet<>(before));
 
