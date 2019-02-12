@@ -13,14 +13,14 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification() throws Exception {
 
-        app.getNavigationHelper().gotoGroupPage();
-        if (! app.getGroupHelper().isThereAGroup()) {
-            app.getGroupHelper().createGroup(new GroupData(
-                    "test_group_name",
-                    "test_group_header",
-                    "test_group_footer"));
+        app.goTo().groupPage();
+        if (! app.group().isThereAGroup()) {
+            app.group().create(new GroupData()
+                            .withName("test_group_name")
+                            .withHeader("test_group_header")
+                            .withFooter("test_group_footer"));
         }
-        app.getNavigationHelper().gotoHome();
+        app.goTo().HomePage();
         if (! app.getContactHelper().isThereContact()) {
             app.getContactHelper().createContact(new ContactData("test_contact_name", "T. C.", "Test_contact_lname", "test_nick", "test_title",
                     "test_company", "Test Address", "+2323232", "+932323111100", "333444", "999888", "testemail@test.com"
@@ -28,7 +28,7 @@ public class ContactModificationTests extends TestBase {
                     "April", "2001", "test_group_name", "Rlyeh", "33344555", "So much fields"));
         }
 
-        app.getNavigationHelper().gotoHome();
+        app.goTo().HomePage();
         ContactData contact = new ContactData(
                 "cTest_contact_name",
                 null,
@@ -48,7 +48,7 @@ public class ContactModificationTests extends TestBase {
         contact.setId(modContactId);
         before.add(contact);
         before.sort(byId);
-        app.getNavigationHelper().gotoHome();
+        app.goTo().HomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         after.sort(byId);
 
