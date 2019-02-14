@@ -4,102 +4,55 @@ import java.util.Objects;
 
 public class ContactData {
     private int id;
+    private String name;
+    private String middleName;
+    private String lastName;
+    private String nick;
+    private String title;
+    private String company;
+    private String address;
+    private String homePhone;
+    private String mobilePhone;
+    private String workPhone;
+    private String faxPhone;
+    private String email_1;
+    private String email_2;
+    private String email_3;
+    private String homepage;
+    private String bday;
+    private String bMonth;
+    private String bYear;
+    private String aDay;
+    private String aMonth;
+    private String aYear;
+    private String group;
+    private String address_2;
+    private String phone_2;
+    private String notes;
 
-    private final String name;
-    private final String middleName;
-    private final String lastName;
-    private final String nick;
-    private final String title;
-    private final String company;
-    private final String address;
-    private final String homePhone;
-    private final String mobilePhone;
-    private final String workPhone;
-    private final String faxPhone;
-    private final String email_1;
-    private final String email_2;
-    private final String email_3;
-    private final String homepage;
-    private final String bday;
-    private final String bMonth;
-    private final String bYear;
-    private final String aDay;
-    private final String aMonth;
-    private final String aYear;
-    private final String group;
-    private final String address_2;
-    private final String phone_2;
-    private final String notes;
-
-    public ContactData(String name, String middleName, String lastName, String nick, String title, String company, String address, String homePhone, String mobilePhone, String workPhone, String faxPhone, String email_1, String email_2, String email_3, String homepage, String bday, String bMonth, String bYear, String aDay, String aMonth, String aYear, String group, String address_2, String phone_2, String notes) {
-        this.id = Integer.MAX_VALUE;
-        this.name = name;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.nick = nick;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.homePhone = homePhone;
-        this.mobilePhone = mobilePhone;
-        this.workPhone = workPhone;
-        this.faxPhone = faxPhone;
-        this.email_1 = email_1;
-        this.email_2 = email_2;
-        this.email_3 = email_3;
-        this.homepage = homepage;
-        this.bday = bday;
-        this.bMonth = bMonth;
-        this.bYear = bYear;
-        this.aDay = aDay;
-        this.aMonth = aMonth;
-        this.aYear = aYear;
-        this.group = group;
-        this.address_2 = address_2;
-        this.phone_2 = phone_2;
-        this.notes = notes;
-    }
-
-    public ContactData(int id, String name, String middleName, String lastName, String nick, String title, String company, String address, String homePhone, String mobilePhone, String workPhone, String faxPhone, String email_1, String email_2, String email_3, String homepage, String bday, String bMonth, String bYear, String aDay, String aMonth, String aYear, String group, String address_2, String phone_2, String notes) {
-        this.id = id;
-        this.name = name;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.nick = nick;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.homePhone = homePhone;
-        this.mobilePhone = mobilePhone;
-        this.workPhone = workPhone;
-        this.faxPhone = faxPhone;
-        this.email_1 = email_1;
-        this.email_2 = email_2;
-        this.email_3 = email_3;
-        this.homepage = homepage;
-        this.bday = bday;
-        this.bMonth = bMonth;
-        this.bYear = bYear;
-        this.aDay = aDay;
-        this.aMonth = aMonth;
-        this.aYear = aYear;
-        this.group = group;
-        this.address_2 = address_2;
-        this.phone_2 = phone_2;
-        this.notes = notes;
-    }
-
-    @Override
-    public String toString() {
-        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + '}';
-    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ContactData withLname(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     @Override
@@ -107,12 +60,12 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName);
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lastName);
+        return Objects.hash(id, name, lastName);
     }
 
     public String getName() {
@@ -213,6 +166,11 @@ public class ContactData {
 
     public String getNotes() {
         return notes;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + '}';
     }
 
 }
