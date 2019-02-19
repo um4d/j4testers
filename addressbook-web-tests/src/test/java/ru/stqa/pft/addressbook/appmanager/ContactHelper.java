@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -138,7 +139,7 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(row.findElement(By.tagName("input"))
                     .getAttribute("value"));
             String address = cells.get(3).getText();
-            String[] emails = cells.get(4).getText().split("\n");
+            String allEmails = cells.get(4).getText();
             String phones = cells.get(5).getText();
 
 
@@ -148,9 +149,7 @@ public class ContactHelper extends HelperBase {
                     .withLname(lname)
                     .withAddress(address)
                     .withAllPhones(phones)
-                    .withEmail1(emails[0])
-                    .withEmail2(emails[1])
-                    .withEmail3(emails[2]);
+                    .withAllEmails(allEmails);
             contactsCache.add(contact);
         }
         return contactsCache;
