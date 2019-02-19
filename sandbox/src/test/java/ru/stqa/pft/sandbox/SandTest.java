@@ -10,11 +10,7 @@ public class SandTest {
     public static void test1() {
 
 
-        Point p1 = new Point(1.0, 1.0);
-        Point p2 = new Point(1.0, 1.0);
 
-        Assert.assertEquals(p1, p2);
-//        System.out.println(p1 == p2);
 
     }
 

@@ -11,9 +11,9 @@ public class ContactData {
     private String title;
     private String company;
     private String address;
-    private String homePhone;
-    private String mobilePhone;
-    private String workPhone;
+    private String phoneHome;
+    private String phoneMobile;
+    private String phoneWork;
     private String faxPhone;
     private String email_1;
     private String email_2;
@@ -29,6 +29,12 @@ public class ContactData {
     private String address_2;
     private String phone_2;
     private String notes;
+    private String allPhones;
+
+
+    public String getAllPhones() {
+        return allPhones;
+    }
 
 
     public int getId() {
@@ -54,6 +60,48 @@ public class ContactData {
         this.group = group;
         return this;
     }
+
+    public ContactData withPhoneHome(String phone) {
+        this.phoneHome = phone;
+        return this;
+    }
+
+    public ContactData withPhoneMobile(String phone) {
+        this.phoneMobile = phone;
+        return this;
+    }
+
+    public ContactData withPhoneWork(String phone) {
+        this.phoneWork = phone;
+        return this;
+    }
+
+    public ContactData withEmail1(String email) {
+        this.email_1 = email;
+        return this;
+    }
+
+    public ContactData withEmail2(String email) {
+        this.email_2 = email;
+        return this;
+    }
+
+    public ContactData withEmail3(String email) {
+        this.email_3 = email;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -96,16 +144,16 @@ public class ContactData {
         return address;
     }
 
-    public String getHomePhone() {
-        return homePhone;
+    public String getPhoneHome() {
+        return phoneHome;
     }
 
-    public String getMobilePhone() {
-        return mobilePhone;
+    public String getPhoneMobile() {
+        return phoneMobile;
     }
 
-    public String getWorkPhone() {
-        return workPhone;
+    public String getPhoneWork() {
+        return phoneWork;
     }
 
     public String getFaxPhone() {
@@ -170,7 +218,7 @@ public class ContactData {
 
     @Override
     public String toString() {
-        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + '}';
+        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + ", address" +
+                "='" + address + '\'' + ", phoneHome='" + phoneHome + '\'' + ", phoneMobile='" + phoneMobile + '\'' + ", phoneWork='" + phoneWork + '\'' + ", email_1='" + email_1 + '\'' + ", email_2='" + email_2 + '\'' + ", email_3='" + email_3 + '\'' + '}';
     }
-
 }
