@@ -1,8 +1,18 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Objects;
 
+
 public class GroupData {
+    private int id = Integer.MAX_VALUE;
+    @Expose
+    private String name;
+    @Expose
+    private String header;
+    @Expose
+    private String footer;
 
     public String getName() {
         return name;
@@ -15,11 +25,6 @@ public class GroupData {
     public String getFooter() {
         return footer;
     }
-
-    private int id = Integer.MAX_VALUE;
-    private String name;
-    private String header;
-    private String footer;
 
     @Override
     public boolean equals(Object o) {
@@ -64,3 +69,4 @@ public class GroupData {
 
 
 }
+
