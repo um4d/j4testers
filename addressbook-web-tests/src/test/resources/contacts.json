@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Joe",
+    "lastName": "Jones",
+    "address": "г. Ейск, ул. Орджоникидзе, д. 44, кв. 151",
+    "phoneHome": "15068109",
+    "phoneMobile": "430941099",
+    "phoneWork": "863100351",
+    "email_1": "1William@yandex.ru",
+    "email_2": "Reece@yahoo.com",
+    "email_3": "Jake@mycompany.int",
+    "group": "test_group_name"
+  },
+  {
+    "name": "Reece",
+    "lastName": "Davies",
+    "address": "г. Чапаевск, ул. Победы, д. 74, кв. 30",
+    "phoneHome": "408916763",
+    "phoneMobile": "565155481",
+    "phoneWork": "83977733",
+    "email_1": "Joseph@amazon.com",
+    "email_2": "Charles@gmail.com",
+    "email_3": "James@amazon.com",
+    "group": "test_group_name"
+  },
+  {
+    "name": "George",
+    "lastName": "Roberts",
+    "address": "г. Екатеринбург, ул. Магистральная, д. 50, кв. 35",
+    "phoneHome": "842228467",
+    "phoneMobile": "64732033",
+    "phoneWork": "114854201",
+    "email_1": "Jacob@mycompany.int",
+    "email_2": "Kyle@yandex.ru",
+    "email_3": "Jacob@yahoo.com",
+    "group": "test_group_name"
+  }
+]
