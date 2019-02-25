@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
