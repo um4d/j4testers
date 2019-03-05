@@ -1,20 +1,19 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddressTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().HomePage();
-        if (app.contacts().count() == 0) {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().HomePage();
             app.contacts().create(new ContactData()
                     .withName("William").withLname("Blake").withGroup("test_group_name")
                     .withPhoneHome("111").withPhoneMobile("222").withPhoneWork("333")
@@ -27,7 +26,15 @@ public class ContactAddressTests extends TestBase {
     public void testContactAddress() {
         ContactData contact = app.contacts().all().iterator().next();
         ContactData info = app.contacts().infoFromEditForm(contact);
+        Contacts dbContacts = app.db().contacts();
+        ContactData dbContact = null;
+        for (ContactData con : dbContacts) {
+            if (con.getId() == contact.getId()) {
+                dbContact = con;
+            }
+        }
         assertThat(contact.getAddress(), equalTo(info.getAddress()));
+        assertThat(contact.getAddress(), equalTo(dbContact.getAddress()));
     }
 
 }

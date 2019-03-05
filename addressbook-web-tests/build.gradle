@@ -11,6 +11,8 @@ dependencies {
     compile "com.beust:jcommander:1.72"
     compile "com.google.code.gson:gson:2.8.5"
     compile "com.thoughtworks.xstream:xstream:1.4.11.1"
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.33'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.1.Final'
 }
 
 task testGroups(type: Test) {
