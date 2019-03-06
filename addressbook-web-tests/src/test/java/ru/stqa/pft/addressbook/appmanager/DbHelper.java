@@ -42,6 +42,25 @@ public class DbHelper {
         session.close();
         return new Contacts(result);
     }
+    public ContactData contactByParameter(String parameter, String value) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery(
+                String.format("from ContactData where deprecated = '0000-00-00' and %s = '%s'"
+                , parameter, value)).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result).iterator().next();
+    }
 
 
+    public ContactData getContactWithoutGroup() {
+        Contacts contacts = contacts();
+        for (ContactData c : contacts) {
+            if (c.getGroups() == null) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

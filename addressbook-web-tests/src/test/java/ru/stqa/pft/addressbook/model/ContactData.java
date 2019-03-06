@@ -68,12 +68,6 @@ public class ContactData {
     @Transient
     private String faxPhone;
 
-    @Override
-    public String toString() {
-        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + ", address" +
-                "='" + address + '\'' + ", allPhones='" + allPhones + '\'' + ", allEmails='" + allEmails + '\'' + '}';
-    }
-
     @Expose
     @Column(name = "email")
     @Type(type = "text")
@@ -311,4 +305,8 @@ public class ContactData {
         return notes;
     }
 
+    @Override
+    public String toString() {
+        return "ContactData{" + "id=" + id + ", groups=" + groups + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + '}';
+    }
 }
