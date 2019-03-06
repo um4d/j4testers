@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactCreationTests extends TestBase {
+    public class ContactCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validContactsFromJson() throws IOException {
@@ -53,12 +54,14 @@ public class ContactCreationTests extends TestBase {
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
         app.goTo().HomePage();
+        Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
-        app.contacts().create(contact);
+        app.contacts().create(contact.withGroup(groups.iterator().next()));
         assertThat(app.contacts().count(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.withAdded(contact.withId(after
                 .stream().mapToInt((g) -> g.getId()).max().getAsInt())).size()));
         assertThat(after, equalTo(before.withAdded(contact)));
+        verifyContactListInUI();
     }
 }

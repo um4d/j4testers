@@ -1,38 +1,35 @@
 [
   {
     "name": "Oliver",
-    "lastName": "OSullivan",
-    "address": "г. Красногорск, ул. Правды, д. 7, кв. 75",
-    "phoneHome": "775567141",
-    "phoneMobile": "388434374",
-    "phoneWork": "568886583",
-    "email_1": "Damian@mycompany.int",
-    "email_2": "Jacob@mail.ru",
-    "email_3": "Michael@amazon.com",
-    "group": "test_group_name"
-  },
-  {
-    "name": "Damian",
-    "lastName": "Wang",
-    "address": "г. Волжский, ул. Никитская, д. 67, кв. 199",
-    "phoneHome": "168631010",
-    "phoneMobile": "808524592",
-    "phoneWork": "570443840",
-    "email_1": "Jacob@yandex.ru",
+    "lastName": "Wilson",
+    "address": "г. Красноярск, ул. Правды, д. 96, кв. 141",
+    "phoneHome": "599253739",
+    "phoneMobile": "929085940",
+    "phoneWork": "294365879",
+    "email_1": "Jacob@gmail.com",
     "email_2": "Oscar@yandex.ru",
-    "email_3": "Alexander@mail.ru",
-    "group": "test_group_name"
+    "email_3": "Rhys@yahoo.com"
   },
   {
-    "name": "Charlie",
-    "lastName": "OKelly",
-    "address": "г. Обнинск, ул. Правды, д. 96, кв. 75",
-    "phoneHome": "587983510",
-    "phoneMobile": "327998387",
-    "phoneWork": "697723534",
-    "email_1": "Jack@yahoo.com",
-    "email_2": "William@yahoo.com",
-    "email_3": "Connor@yahoo.com",
-    "group": "test_group_name"
+    "name": "Oscar",
+    "lastName": "OSullivan",
+    "address": "г. Курган, ул. Лазо, д. 80, кв. 35",
+    "phoneHome": "605740501",
+    "phoneMobile": "40321996",
+    "phoneWork": "580062383",
+    "email_1": "Harry@yandex.ru",
+    "email_2": "Jacob@yandex.ru",
+    "email_3": "Kyle@mail.ru"
+  },
+  {
+    "name": "James",
+    "lastName": "Li",
+    "address": "г. Новосибирск, ул. Никитская, д. 42, кв. 165",
+    "phoneHome": "746228920",
+    "phoneMobile": "427964510",
+    "phoneWork": "327483548",
+    "email_1": "Charlie@amazon.com",
+    "email_2": "Jack@mycompany.int",
+    "email_3": "Alexander@mycompany.int"
   }
 ]

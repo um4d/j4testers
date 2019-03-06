@@ -1,11 +1,14 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -14,6 +17,15 @@ public class ContactData {
     @Id
     @Column(name = "id")
     private int id;
+
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<>();
 
     @Expose
     @Column(name = "firstname")
@@ -58,7 +70,8 @@ public class ContactData {
 
     @Override
     public String toString() {
-        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + '}';
+        return "ContactData{" + "id=" + id + ", name='" + name + '\'' + ", lastName='" + lastName + '\'' + ", address" +
+                "='" + address + '\'' + ", allPhones='" + allPhones + '\'' + ", allEmails='" + allEmails + '\'' + '}';
     }
 
     @Expose
@@ -90,9 +103,6 @@ public class ContactData {
     private String aMonth;
     @Transient
     private String aYear;
-
-    @Transient
-    private String group;
     @Transient
     private String address_2;
     @Transient
@@ -118,12 +128,12 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(company, that.company) && Objects.equals(address, that.address) && Objects.equals(phoneHome, that.phoneHome) && Objects.equals(phoneMobile, that.phoneMobile) && Objects.equals(phoneWork, that.phoneWork) && Objects.equals(email_1, that.email_1) && Objects.equals(email_2, that.email_2) && Objects.equals(email_3, that.email_3);
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(allPhones, that.allPhones) && Objects.equals(allEmails, that.allEmails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName, company, address, phoneHome, phoneMobile, phoneWork, email_1, email_2, email_3);
+        return Objects.hash(id, name, lastName, address, allPhones, allEmails);
     }
 
     public File getPhoto() {
@@ -154,8 +164,8 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
+    public ContactData withGroup(GroupData group) {
+        this.groups.add(group);
         return this;
     }
 
@@ -287,10 +297,6 @@ public class ContactData {
 
     public String getaYear() {
         return aYear;
-    }
-
-    public String getGroup() {
-        return group;
     }
 
     public String getAddress_2() {

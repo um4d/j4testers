@@ -39,7 +39,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//option[@value='April'])[2]"));
         type(By.name("ayear"), contactData.getaYear());
         if (creation) {
-            selectGroupForCreation(contactData.getGroup());
+            selectGroupForCreation(contactData.getGroups().iterator().next().getName());
         }
         type(By.name("address2"), contactData.getAddress_2());
         type(By.name("phone2"), contactData.getPhone_2());

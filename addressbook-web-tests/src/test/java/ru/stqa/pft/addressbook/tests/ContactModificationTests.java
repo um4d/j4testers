@@ -22,7 +22,7 @@ public class ContactModificationTests extends TestBase {
         app.goTo().HomePage();
         if (app.db().contacts().size() == 0) {
             app.contacts().create(new ContactData()
-                    .withName("William").withLname("Blake").withGroup("test_group_name")
+                    .withName("William").withLname("Blake")
                     .withPhoneHome("111").withPhoneMobile("222").withPhoneWork("333")
                     .withEmail1("email@mail.com").withEmail2("444411@mmail.int")
                     .withEmail3("pr@").withAddress("Улица Пушкина, дом Колотушкина-2а"));
@@ -33,7 +33,7 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() throws Exception {
         app.goTo().HomePage();
         ContactData contact = new ContactData()
-                .withName("William").withLname("Blake").withGroup("test_group_name")
+                .withName("William").withLname("Blake")
                 .withPhoneHome("111").withPhoneMobile("222").withPhoneWork("333")
                 .withEmail1("email@mail.com").withEmail2("444411@mmail.int")
                 .withEmail3("pr@").withAddress("Улица Пушкина, дом Колотушкина-2а");
@@ -46,6 +46,7 @@ public class ContactModificationTests extends TestBase {
                             .without(modifiedContact).withAdded(contact).size()));
         assertThat(after, equalTo(before
                              .without(modifiedContact).withAdded(contact)));
+        verifyContactListInUI();
 
     }
 

@@ -15,7 +15,7 @@ public class ContactAddressTests extends TestBase {
         if (app.db().contacts().size() == 0) {
             app.goTo().HomePage();
             app.contacts().create(new ContactData()
-                    .withName("William").withLname("Blake").withGroup("test_group_name")
+                    .withName("William").withLname("Blake")
                     .withPhoneHome("111").withPhoneMobile("222").withPhoneWork("333")
                     .withEmail1("email@mail.com").withEmail2("444411@mmail.int")
                     .withEmail3("pr@").withAddress("Улица Пушкина, дом Колотушкина-2а"));
