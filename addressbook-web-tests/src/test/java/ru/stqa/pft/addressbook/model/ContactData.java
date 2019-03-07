@@ -163,6 +163,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withoutGroup(GroupData group) {
+        this.groups.remove(group);
+        return this;
+    }
+
     public ContactData withPhoneHome(String phone) {
         this.phoneHome = phone;
         return this;

@@ -46,7 +46,7 @@ public class DbHelper {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<ContactData> result = session.createQuery(
-                String.format("from ContactData where deprecated = '0000-00-00' and %s = '%s'"
+                String.format("from ContactData where %s = '%s' and deprecated = '0000-00-00'"
                 , parameter, value)).list();
         session.getTransaction().commit();
         session.close();
@@ -60,6 +60,18 @@ public class DbHelper {
             if (c.getGroups() == null) {
                 return c;
             }
+        }
+        return null;
+    }
+
+    public ContactData getContactWithGroup(GroupData group) {
+        Contacts contacts = contacts();
+        for (ContactData c : contacts) {
+                for (GroupData g : c.getGroups()) {
+                    if (g.equals(group)) {
+                        return c;
+                    }
+                }
         }
         return null;
     }

@@ -82,7 +82,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectById(int id) {
-        wd.findElement(By.cssSelector("input[value='"+ id + "']")).click();
+        wd.findElement(By.cssSelector("input[value='"+ id + "'][type='checkbox']")).click();
     }
 
     public boolean isThereContact() {
@@ -192,6 +192,16 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
         contactsCache = null;
         returnHome();
+    }
+
+    public void selectGroupForViewContacts(GroupData group) {
+        wd.findElement(By.xpath(String.format("//option[@value='%s']",
+                            group.getId()))).click();
+    }
+
+    public void submitRemovingFromGroup() {
+        wd.findElement(By.name("remove")).click();
+        wd.findElement(By.linkText("home")).click();
     }
 }
 
