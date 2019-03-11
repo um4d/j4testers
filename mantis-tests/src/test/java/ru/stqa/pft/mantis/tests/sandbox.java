@@ -11,10 +11,10 @@ public class sandbox {
         wiser.start();
         long start = System.currentTimeMillis();
         while (System.currentTimeMillis() < start + 20000) {
-            System.out.println(wiser.getMessages().size());
             }
-            try {
-                Thread.sleep(1000);
+        try {
+            System.out.println(wiser.getMessages().size());
+            Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -5,14 +5,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
+import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.UserData;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Random;
 
-public class RegistrationTests extends TestBase {
+public class PasswordChangeTests extends TestBase{
 
     @BeforeMethod
     public void startMailServer() {
@@ -20,22 +22,23 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void testRegistration() throws IOException, MessagingException, InterruptedException {
-        String email = String.format("user%s@localhost", new Random().nextInt(9999));
-        String user = String.format("user%s", new Random().nextInt(9999));
-        String password = "password";
-        app.registration().start(user, email);
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        String link = findConfirmationLink(mailMessages, email);
-        app.registration().finish(link, user, password);
-        Assert.assertTrue(app.newSession().login(user, password));
+    public void testPasswordChange() throws IOException, SQLException, MessagingException {
+        HttpSession session = app.newSession();
+        app.pass().login("administrator", "root");
+        UserData user = app.pass().getUserFromDb();
+        app.pass().resetUserPassword(user);
+        List<MailMessage> messages = app.mail().waitForMail(1, 10000);
+        String link = findConfirmationLink(messages, user.getMail());
+        String newPassword = "newpassword2";
+        app.pass().finish(link, user.getUsername(), newPassword);
+        Assert.assertTrue(session.login(user.getUsername(), newPassword));
     }
 
     private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
         MailMessage message = mailMessages.stream().filter((m)
                 -> m.to.equals(email)).findFirst().get();
         VerbalExpression regex = VerbalExpression.regex()
-                                .find("http://").nonSpace().oneOrMore().build();
+                .find("http://").nonSpace().oneOrMore().build();
         return regex.getText(message.text);
     }
 
@@ -44,8 +47,4 @@ public class RegistrationTests extends TestBase {
         app.mail().stop();
     }
 
-
 }
-
-
-
