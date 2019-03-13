@@ -22,7 +22,7 @@ public class TestBase {
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
-        app.init( );
+        app.init();
     }
 
     @AfterSuite(alwaysRun = true)

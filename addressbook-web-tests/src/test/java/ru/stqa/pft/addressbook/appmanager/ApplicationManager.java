@@ -26,13 +26,14 @@ public class ApplicationManager {
 
     public ApplicationManager(String browser) {
         this.browser = browser;
+        properties = new Properties();
     }
 
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
-        properties = new Properties();
         properties.load(new FileReader(new File(String
                 .format("src/test/resources/%s.properties", target))));
+        System.out.println(browser);
 
         dbHelper = new DbHelper();
 
