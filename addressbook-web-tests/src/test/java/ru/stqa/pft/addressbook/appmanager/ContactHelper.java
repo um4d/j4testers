@@ -40,7 +40,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//option[@value='April'])[2]"));
         type(By.name("ayear"), contactData.getaYear());
         if (creation) {
-            selectGroupForCreation(contactData.getGroups().iterator().next().getName());
+            selectGroupForCreation(contactData.getGroups().iterator().next().getId());
         }
         type(By.name("address2"), contactData.getAddress_2());
         type(By.name("phone2"), contactData.getPhone_2());
@@ -68,8 +68,8 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void selectGroupForCreation(String groupName) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupName);
+    public void selectGroupForCreation(int id) {
+        click(By.xpath(String.format("//option[@value='%s']", id)));
     }
 
     public void selectByOrder(int index) {
