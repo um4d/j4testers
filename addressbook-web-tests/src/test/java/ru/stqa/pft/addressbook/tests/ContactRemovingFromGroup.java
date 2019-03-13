@@ -21,7 +21,6 @@ public class ContactRemovingFromGroup extends TestBase {
             app.group().create(new GroupData().withName("test_group_name"));
         }
         contactBefore = app.db().getContactWithGroup(group);
-        System.out.println(contactBefore.getId());
         if (contactBefore == null) {
             app.goTo().HomePage();
             contactBefore = new ContactData().withName("William")
