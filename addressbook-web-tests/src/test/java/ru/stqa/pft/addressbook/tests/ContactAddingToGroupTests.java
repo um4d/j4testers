@@ -40,6 +40,7 @@ public class ContactAddingToGroupTests extends TestBase{
         app.contacts().submitAddingToGroup();
         ContactData contactAfter = app.db().contactByParameter(
                 "id", Integer.toString(contactBefore.getId()));
-        assertThat(contactAfter.getGroups(), equalTo(contactAfter.withGroup(group).getGroups()));
+        assertThat(contactBefore, equalTo(contactAfter));
+        assertThat(contactBefore.withGroup(group).getGroups(), equalTo(contactAfter.getGroups()));
     }
 }

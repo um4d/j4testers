@@ -51,8 +51,8 @@ public class ContactRemovingFromGroup extends TestBase {
         app.contacts().submitRemovingFromGroup();
         ContactData contactAfter = app.db().contactByParameter("id",
                 Integer.toString(contact.getId()));
-        assertThat(contact.withoutGroup(group), equalTo(contactAfter));
+        assertThat(contact, equalTo(contactAfter));
+        assertThat(contact.withoutGroup(group).getGroups(), equalTo(contactAfter.getGroups()));
     }
-
 
 }

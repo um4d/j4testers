@@ -14,6 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "addressbook")
 public class ContactData {
+
+
     @Id
     @Column(name = "id")
     private int id;
